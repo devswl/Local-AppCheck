@@ -11,7 +11,7 @@
     <groupId>com.vulcanlabs</groupId>
     <artifactId>appcheck</artifactId>
     <version>1.0.0</version>
-    <packaging>aar</packaging>
+    <packaging>pom</packaging>
     <repositories>
         <repository>
             <id>maven</id>
