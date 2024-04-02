@@ -16,7 +16,7 @@
         <repository>
             <id>maven</id>
             <name>your custom repo</name>
-            <url>https://maven.google.com</url>
+            <url>https://mvnrepository.com</url>
         </repository>
         <repository>
             <id>central</id>
