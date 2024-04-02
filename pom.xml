@@ -16,7 +16,7 @@
         <repository>
             <id>maven</id>
             <name>your custom repo</name>
-            <url>https://mvnrepository.com</url>
+            <url>https://dl.google.com/dl/android/maven2</url>
         </repository>
         <repository>
             <id>central</id>
