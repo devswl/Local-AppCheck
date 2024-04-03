@@ -53,12 +53,14 @@
             <groupId>com.google.firebase</groupId>
             <artifactId>firebase-appcheck-debug</artifactId>
             <version>17.0.0</version>
+             <type>aar</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>com.google.firebase</groupId>
             <artifactId>firebase-appcheck-ktx</artifactId>
             <version>17.0.0</version>
+             <type>aar</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
