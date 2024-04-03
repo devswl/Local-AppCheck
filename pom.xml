@@ -11,7 +11,6 @@
     <groupId>com.vulcanlabs</groupId>
     <artifactId>appcheck</artifactId>
     <version>1.0.0</version>
-    <packaging>pom</packaging>
     <repositories>
         <repository>
             <id>maven</id>
@@ -46,6 +45,7 @@
         <dependency>
             <groupId>com.google.firebase</groupId>
             <artifactId>firebase-appcheck-playintegrity</artifactId>
+             <type>aar</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
