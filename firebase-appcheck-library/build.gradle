@@ -36,11 +36,12 @@ android {
 }
 
 dependencies {
-    api fileTree(include: ['*.jar', '*.aar'], dir: 'libs/')
+    //api fileTree(include: ['*.jar', '*.aar'], dir: 'libs/')
     implementation(platform(firebase.bom))
     implementation firebase.appCheck
     implementation firebase.appCheckDebug
     implementation firebase.appcheckKtx
     implementation firebase.crashlytics
     implementation network.gson
+    implementation files('libs/vulcan-appcheck-1.5.aar')
 }
