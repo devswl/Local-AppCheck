@@ -36,12 +36,31 @@ android {
 }
 
 dependencies {
-    //api fileTree(include: ['*.jar', '*.aar'], dir: 'libs/')
+    api fileTree(dir: 'libs', include: ['*.jar','*.aar'])
     implementation(platform(firebase.bom))
     implementation firebase.appCheck
     implementation firebase.appCheckDebug
     implementation firebase.appcheckKtx
     implementation firebase.crashlytics
     implementation network.gson
-    implementation files('libs/vulcan-appcheck-1.5.aar')
 }
+
+afterEvaluate {
+    publishing {
+        repositories {
+            maven {
+                name = 'CustomMavenRepo'
+                url = "file://${buildDir}/repo"
+            }
+        }
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId 'com.vulcanlabs'
+                artifactId 'appcheck'
+                version '1.0.0'
+            }
+        }
+    }
+}
+
