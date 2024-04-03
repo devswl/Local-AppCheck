@@ -36,8 +36,7 @@
         <repository>
             <id>maven2</id>
             <name>Maven Repository Switchboard</name>
-            <url>https://maven.google.com</url>
-
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
 <dependencyManagement>
