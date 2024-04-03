@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 7.4.2" type="conditional_incidents">
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 31">
+        <fix-replace
+            description="Delete tools:targetApi"
+            replacement="">
+            <range
+                file="${:sample*debug*sourceProvider*0*manifest*0}"
+                startOffset="510"
+                endOffset="530"/>
+        </fix-replace>
+        <location
+            file="${:sample*debug*sourceProvider*0*manifest*0}"
+            line="13"
+            column="9"
+            startOffset="510"
+            endLine="13"
+            endColumn="29"
+            endOffset="530"/>
+        <map>
+            <condition minGE="31"/>
+        </map>
+    </incident>
+
+</incidents>
