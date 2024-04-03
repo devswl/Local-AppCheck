@@ -8,7 +8,7 @@ plugins {
 apply from: '../dependencies.gradle'
 
 android {
-    namespace 'com.vulcanlabs.appcheck'
+    namespace 'com.smartwdgetlabs.lib.security'
     compileSdk appConfig.compileSdk
 
     defaultConfig {
@@ -56,8 +56,8 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                groupId 'com.vulcanlabs'
-                artifactId 'appcheck'
+                groupId 'com.smartwdgetlabs.lib'
+                artifactId 'security'
                 version '1.0.0'
             }
         }
