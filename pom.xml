@@ -27,6 +27,19 @@
 <developerConnection>scm:git://github.com/hvdung90/vulcan-appcheck.git</developerConnection>
 <url>git://github.com/hvdung90/vulcan-appcheck.git</url>
 </scm>
+   <repositories>
+        <repository>
+            <id>maven</id>
+            <name>your custom repo</name>
+            <url>https://dl.google.com/dl/android/maven2</url>
+        </repository>
+        <repository>
+            <id>maven2</id>
+            <name>Maven Repository Switchboard</name>
+            <url>https://maven.google.com</url>
+
+        </repository>
+    </repositories>
 <dependencyManagement>
 <dependencies>
 <dependency>
