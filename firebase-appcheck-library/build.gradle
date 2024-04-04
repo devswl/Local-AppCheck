@@ -36,7 +36,6 @@ android {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar','*.aar'])
     implementation(platform(firebase.bom))
     implementation firebase.appCheck
     implementation firebase.appCheckDebug
