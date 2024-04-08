@@ -2,7 +2,6 @@ package com.vulcanlabs.appcheck.manager
 
 import android.content.Context
 import com.google.firebase.appcheck.AppCheckToken
-import com.google.firebase.appcheck.BuildConfig
 import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory
 import com.google.firebase.appcheck.ktx.appCheck
 import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory
@@ -24,7 +23,7 @@ import kotlinx.coroutines.runBlocking
 /**
  * @author user
  */
-class AppCheckManager(private var context: Context) {
+class AppCheckManager(private var context: Context, debug: Boolean) {
     private var appCheck: AppCheckToken? = null
     private var keyRaw: String? = null
     private var sha1: String? = null
@@ -37,7 +36,7 @@ class AppCheckManager(private var context: Context) {
     }
 
     init {
-        val factory = if (BuildConfig.DEBUG) {
+        val factory = if (debug) {
             DebugAppCheckProviderFactory.getInstance()
         } else {
             PlayIntegrityAppCheckProviderFactory.getInstance()
