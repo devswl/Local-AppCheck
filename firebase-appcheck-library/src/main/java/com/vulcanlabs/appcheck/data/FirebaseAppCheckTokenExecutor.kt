@@ -76,7 +76,9 @@ class FirebaseAppCheckTokenExecutor(
         val errorCode =
             AppCheckFallbackUtils.getInstance().getAppCheckError(exception?.message)
         val tokenFallback =
-            AppCheckFallbackUtils.getInstance().getTokenLocal(context, sha1, keyRaw, errorCode)
+            if (!keyRaw.isNullOrEmpty()) AppCheckFallbackUtils.getInstance()
+                .getTokenLocal(context, sha1, keyRaw, errorCode)
+            else null
         val data = AppCheckResult(
             null,
             tokenFallback, errorMessage
