@@ -19,6 +19,8 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 /**
  * @author user
@@ -86,6 +88,26 @@ class AppCheckManager(private var context: Context, debug: Boolean) {
             )
             appCheckTokenProvider.provideAppCheckToken()
         }
+    }
+
+    suspend fun getAppCheckDataV2(
+        forceRefresh: Boolean,
+        strategy: FirebaseRequestTokenStrategy = FirebaseRequestTokenStrategy.Basic(forceRefresh)
+    ): Result<AppCheckResult> = suspendCoroutine { continuation ->
+        channel.trySend(
+            CoroutineScope(Dispatchers.IO).launch(start = CoroutineStart.LAZY) {
+                val appCheckTokenProvider = AppCheckTokenProviderFactory.getAppCheckTokenProvider(
+                    appCheckTokenExecutor = FirebaseAppCheckTokenExecutor(
+                        strategy,
+                        sha1,
+                        keyRaw,
+                        context
+                    ),
+                    blockedTimeAfterError = blockedTimeAfterError
+                )
+                continuation.resume(appCheckTokenProvider.provideAppCheckToken())
+            }
+        )
     }
 
     fun firstInit(keyRaw: String? = null, sha1: String? = null) {
