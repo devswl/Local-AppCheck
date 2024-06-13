@@ -21,11 +21,13 @@ class FirebaseAppCheckTokenExecutor(
     private val strategy: FirebaseRequestTokenStrategy,
     private val sha1: String?,
     private val keyRaw: String?,
+    private val listErrorTracking: Set<AppCheckError>,
     private val context: Context
 ) : AppCheckTokenExecutor {
 
     private val firebaseAppCheck = FirebaseAppCheck.getInstance()
     private val mutex = Mutex()
+    private val defaultError = setOf(AppCheckError.APP_ATTESTATION_FAILED)
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     override suspend fun getToken(): Result<AppCheckResult> {
@@ -83,12 +85,9 @@ class FirebaseAppCheckTokenExecutor(
             null,
             tokenFallback, errorMessage
         )
-        val error = AppCheckFallbackUtils.getInstance()
-            .getErrorAppCheck()
+        val error = AppCheckFallbackUtils.getInstance().getErrorAppCheck()
         continuation.resume(
-            if (AppCheckFallbackUtils.getInstance()
-                    .getErrorAppCheck() != AppCheckError.APP_ATTESTATION_FAILED
-            ) {
+            if (!(listErrorTracking + defaultError).contains(AppCheckFallbackUtils.getInstance().getErrorAppCheck())) {
                 Result.success(data)
             } else {
                 Result.failure(RuntimeException(error.value))
