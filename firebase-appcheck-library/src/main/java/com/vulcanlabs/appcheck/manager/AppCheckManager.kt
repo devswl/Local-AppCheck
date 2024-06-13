@@ -8,6 +8,7 @@ import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderF
 import com.google.firebase.ktx.Firebase
 import com.vulcanlabs.appcheck.data.FirebaseAppCheckTokenExecutor
 import com.vulcanlabs.appcheck.domain.AppCheckTokenProviderFactory
+import com.vulcanlabs.appcheck.domain.entity.AppCheckError
 import com.vulcanlabs.appcheck.domain.entity.AppCheckResult
 import com.vulcanlabs.appcheck.domain.entity.FirebaseRequestTokenStrategy
 import kotlinx.coroutines.CoroutineScope
@@ -23,7 +24,11 @@ import kotlinx.coroutines.runBlocking
 /**
  * @author user
  */
-class AppCheckManager(private var context: Context, debug: Boolean) {
+class AppCheckManager(
+    private var context: Context,
+    private val listErrorTracking: Set<AppCheckError> = emptySet(),
+    debug: Boolean
+) {
     private var appCheck: AppCheckToken? = null
     private var keyRaw: String? = null
     private var sha1: String? = null
@@ -59,6 +64,7 @@ class AppCheckManager(private var context: Context, debug: Boolean) {
                         strategy,
                         sha1,
                         keyRaw,
+                        listErrorTracking,
                         context
                     ),
                     blockedTimeAfterError = blockedTimeAfterError
@@ -80,6 +86,7 @@ class AppCheckManager(private var context: Context, debug: Boolean) {
                     strategy,
                     sha1,
                     keyRaw,
+                    listErrorTracking,
                     context
                 ),
                 blockedTimeAfterError = blockedTimeAfterError

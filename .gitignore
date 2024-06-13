@@ -7,6 +7,8 @@
 node_modules/
 dist/
 
+build/
+local.properties
 # Compiled Java class files
 *.class
 
@@ -46,4 +48,5 @@ Thumbs.db
 *.wmv
 
 .gradle
-local.properties
+
+sample/build
